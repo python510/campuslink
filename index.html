@@ -16,49 +16,13 @@
             padding: 0
         }
 
-        /* ── THEME VARIABLES ── */
-        :root {
-            --bg: #07090f;
-            --bg2: #0f1117;
-            --bg3: rgba(255,255,255,.04);
-            --border: rgba(255,255,255,.08);
-            --border2: rgba(255,255,255,.12);
-            --text: #ffffff;
-            --text2: rgba(255,255,255,.55);
-            --text3: rgba(255,255,255,.28);
-            --inp-bg: rgba(255,255,255,.06);
-            --card-bg: rgba(255,255,255,.04);
-            --bubble-them: rgba(255,255,255,.1);
-            --bubble-them-text: rgba(255,255,255,.9);
-            --nav-bg: rgba(7,9,15,.97);
-            --accent: #e8457a;
-            --accent2: #4fc3f7;
-        }
-
-        body.light {
-            --bg: #f0f2f8;
-            --bg2: #e4e7f0;
-            --bg3: rgba(0,0,0,.04);
-            --border: rgba(0,0,0,.08);
-            --border2: rgba(0,0,0,.14);
-            --text: #0d0f1a;
-            --text2: rgba(0,0,0,.5);
-            --text3: rgba(0,0,0,.3);
-            --inp-bg: rgba(0,0,0,.05);
-            --card-bg: #ffffff;
-            --bubble-them: #ffffff;
-            --bubble-them-text: #1a1c28;
-            --nav-bg: rgba(240,242,248,.97);
-        }
-
         html,
         body {
             height: 100%;
-            background: var(--bg);
+            background: #07090f;
             font-family: 'Sora', sans-serif;
-            color: var(--text);
-            overflow-x: hidden;
-            transition: background .25s, color .25s
+            color: #fff;
+            overflow-x: hidden
         }
 
         ::-webkit-scrollbar {
@@ -90,8 +54,7 @@
             position: fixed;
             inset: 0;
             overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
-            background: var(--bg)
+            -webkit-overflow-scrolling: touch
         }
 
         .page.on {
@@ -100,14 +63,6 @@
         }
 
         .page.block {
-            display: none;
-            position: fixed;
-            inset: 0;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch
-        }
-
-        .page.block.on {
             display: block
         }
 
@@ -115,8 +70,7 @@
             display: none;
             position: fixed;
             inset: 0;
-            flex-direction: column;
-            background: var(--bg)
+            flex-direction: column
         }
 
         #pg-chat.on {
@@ -125,7 +79,7 @@
 
         /* ── SPLASH ── */
         #pg-splash {
-            background: var(--bg);
+            background: #07090f;
             align-items: center;
             justify-content: center
         }
@@ -133,24 +87,30 @@
         /* ── INPUTS ── */
         .inp {
             width: 100%;
-            background: var(--inp-bg);
-            border: 1.5px solid var(--border);
+            background: rgba(255, 255, 255, .06);
+            border: 1.5px solid rgba(255, 255, 255, .1);
             border-radius: 14px;
             padding: 14px 16px;
-            color: var(--text);
+            color: #fff;
             font-size: 15px;
             transition: all .2s
         }
 
-        .inp::placeholder { color: var(--text3) }
-        textarea.inp { resize: none; line-height: 1.65 }
+        .inp::placeholder {
+            color: rgba(255, 255, 255, .3)
+        }
+
+        textarea.inp {
+            resize: none;
+            line-height: 1.65
+        }
 
         .lbl {
             font-size: 11px;
             font-weight: 600;
             letter-spacing: .7px;
             text-transform: uppercase;
-            color: var(--text3);
+            color: rgba(255, 255, 255, .4);
             margin-bottom: 7px;
             display: block
         }
@@ -301,13 +261,16 @@
             left: 0;
             right: 0;
             z-index: 90;
-            background: var(--nav-bg);
+            background: rgba(7, 9, 15, .97);
             backdrop-filter: blur(24px);
-            border-top: 1px solid var(--border);
+            border-top: 1px solid rgba(255, 255, 255, .07);
             display: none;
             padding: 0 6px env(safe-area-inset-bottom, 0)
         }
-        #nav.on { display: flex }
+
+        #nav.on {
+            display: flex
+        }
 
         .ni {
             flex: 1;
@@ -321,162 +284,64 @@
             background: none;
             position: relative
         }
-        .ni .ico { font-size: 21px; opacity: .42; transition: all .2s; filter: grayscale(1) }
-        .ni .lbl2 { font-size: 10px; font-weight: 600; color: var(--text3); transition: color .2s }
-        .ni.on .ico { opacity: 1; filter: none }
-        .ni.on .lbl2 { color: var(--accent) }
-        .ni.on::after { content:''; position:absolute; top:0; left:50%; transform:translateX(-50%); width:28px; height:2px; background:var(--accent); border-radius:2px }
 
-        .nbadge {
-            position: absolute; top: 9px; right: calc(50% - 20px);
-            background: var(--accent); color: #fff; font-size: 9px; font-weight: 700;
-            min-width: 16px; height: 16px; border-radius: 8px;
-            align-items: center; justify-content: center; padding: 0 4px; display: none
-        }
-        .nbadge.on { display: flex }
-
-        /* ── CARD ── */
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            backdrop-filter: blur(20px)
+        .ni .ico {
+            font-size: 21px;
+            opacity: .42;
+            transition: all .2s;
+            filter: grayscale(1)
         }
 
-        /* ── CHAT BUBBLES ── */
-        .bub {
-            max-width: 74%;
-            padding: 10px 14px;
-            border-radius: 18px;
-            font-size: 14px;
-            line-height: 1.55;
-            word-break: break-word;
-            animation: popIn .18s ease;
-            position: relative
-        }
-        .bme {
-            background: linear-gradient(135deg, #e8457a, #f7915a);
-            color: #fff;
-            border-bottom-right-radius: 5px;
-            margin-left: auto
-        }
-        .bthem {
-            background: var(--bubble-them);
-            color: var(--bubble-them-text);
-            border-bottom-left-radius: 5px;
-            border: 1px solid var(--border)
+        .ni .lbl2 {
+            font-size: 10px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, .3);
+            transition: color .2s
         }
 
-        /* ── REACTION BUBBLE ── */
-        .msg-reactions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 4px;
-            margin-top: 4px
+        .ni.on .ico {
+            opacity: 1;
+            filter: none
         }
-        .rxn-chip {
-            display: inline-flex;
-            align-items: center;
-            gap: 3px;
-            background: var(--bg3);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 2px 8px;
-            font-size: 13px;
-            cursor: pointer;
-            transition: all .15s;
-            user-select: none
-        }
-        .rxn-chip:hover { border-color: var(--accent); background: rgba(232,69,122,.08) }
-        .rxn-chip.mine { border-color: rgba(232,69,122,.4); background: rgba(232,69,122,.12) }
-        .rxn-chip span { font-size: 10px; color: var(--text2); font-weight: 600 }
 
-        /* ── REACTION PICKER ── */
-        #rxn-picker {
-            position: fixed;
-            z-index: 500;
-            background: var(--bg2);
-            border: 1px solid var(--border2);
-            border-radius: 20px;
-            padding: 10px;
-            display: none;
-            flex-wrap: wrap;
-            gap: 6px;
-            width: 220px;
-            box-shadow: 0 12px 40px rgba(0,0,0,.4)
+        .ni.on .lbl2 {
+            color: #e8457a
         }
-        #rxn-picker.on { display: flex }
-        .rxn-opt { font-size: 22px; cursor: pointer; padding: 4px; border-radius: 8px; transition: transform .15s }
-        .rxn-opt:hover { transform: scale(1.3) }
 
-        /* ── STICKER PANEL ── */
-        #sticker-panel {
-            position: absolute;
-            bottom: 100%;
-            left: 0; right: 0;
-            background: var(--bg2);
-            border-top: 1px solid var(--border);
-            padding: 12px;
-            display: none;
-            flex-wrap: wrap;
-            gap: 8px;
-            max-height: 200px;
-            overflow-y: auto
-        }
-        #sticker-panel.on { display: flex }
-        .sticker { font-size: 32px; cursor: pointer; padding: 6px; border-radius: 10px; transition: transform .15s }
-        .sticker:hover { transform: scale(1.2) }
-
-        /* ── COMMUNITY CARDS ── */
-        .comm-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: transform .18s, box-shadow .18s
-        }
-        .comm-card:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,0,0,.25) }
-        .comm-banner {
-            height: 80px;
-            position: relative;
-            overflow: hidden
-        }
-        .comm-body { padding: 12px 14px 14px }
-
-        /* ── CHAT PROFILE SHEET ── */
-        #chat-profile-sheet {
-            position: fixed;
-            inset: 0;
-            z-index: 300;
-            background: rgba(0,0,0,.6);
-            backdrop-filter: blur(8px);
-            display: none;
-            align-items: flex-end;
-            justify-content: center
-        }
-        #chat-profile-sheet.on { display: flex }
-
-        /* ── THEME TOGGLE ── */
-        .theme-toggle {
-            width: 44px; height: 26px;
-            background: var(--bg3);
-            border: 1.5px solid var(--border);
-            border-radius: 13px;
-            position: relative;
-            cursor: pointer;
-            transition: background .25s
-        }
-        .theme-toggle::after {
+        .ni.on::after {
             content: '';
             position: absolute;
-            top: 3px; left: 3px;
-            width: 18px; height: 18px;
-            border-radius: 50%;
-            background: var(--text2);
-            transition: transform .25s, background .25s
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 28px;
+            height: 2px;
+            background: #e8457a;
+            border-radius: 2px
         }
-        body.light .theme-toggle::after { transform: translateX(18px); background: var(--accent) }
+
+        .nbadge {
+            position: absolute;
+            top: 9px;
+            right: calc(50% - 20px);
+            background: #e8457a;
+            color: #fff;
+            font-size: 9px;
+            font-weight: 700;
+            min-width: 16px;
+            height: 16px;
+            border-radius: 8px;
+            align-items: center;
+            justify-content: center;
+            padding: 0 4px;
+            display: none
+        }
+
+        .nbadge.on {
+            display: flex
+        }
+
+        /* ── SWIPE CARD ── */
         .scard {
             position: absolute;
             inset: 0;
@@ -546,8 +411,8 @@
 
         /* ── MATCH CARD / CONV ROW ── */
         .mcard {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid rgba(255, 255, 255, .08);
             border-radius: 16px;
             padding: 15px;
             display: flex;
@@ -556,7 +421,10 @@
             cursor: pointer;
             transition: all .18s
         }
-        .mcard:hover { background: var(--bg3) }
+
+        .mcard:hover {
+            background: rgba(255, 255, 255, .07)
+        }
 
         .crow {
             padding: 14px;
@@ -567,7 +435,29 @@
             cursor: pointer;
             transition: background .15s
         }
-        .crow:hover { background: var(--bg3) }
+
+        .crow:hover {
+            background: rgba(255, 255, 255, .05)
+        }
+
+        /* ── INFO PANEL ── */
+        .ipanel {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            bottom: 0;
+            width: min(290px, 90vw);
+            background: rgba(8, 10, 18, .99);
+            border-left: 1px solid rgba(255, 255, 255, .08);
+            z-index: 95;
+            overflow-y: auto;
+            transition: right .28s cubic-bezier(.22, 1, .36, 1);
+            padding: 20px
+        }
+
+        .ipanel.on {
+            right: 0
+        }
 
         /* ── MODAL ── */
         .modal {
@@ -1062,9 +952,10 @@
             font-size: 18px;
             flex-shrink: 0
         }
+        #pg-feed { padding-bottom: 80px; background: #07090f }
     </style>
-</head>
-<body onload="initPages()">
+
+<body>
 
     <!-- ══════════════════════ SPLASH ══════════════════════ -->
     <div id="pg-splash" class="page on">
@@ -1320,9 +1211,7 @@
                             style="flex:1;padding:14px 10px;border-radius:14px;cursor:pointer;text-align:center;border:1.5px solid rgba(232,69,122,.4);background:rgba(232,69,122,.09);transition:all .2s">
                             <div style="font-size:22px;margin-bottom:5px">✉️</div>
                             <div style="font-size:12px;font-weight:600">University Email</div>
-                            <div style="font-size:10px;color:rgba(255,255,255,.35);margin-top:2px">e.g. <a
-                                    href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                    data-cfemail="fe87918bbe8b9097d09b9a8b">[email&#160;protected]</a></div>
+                            <div style="font-size:10px;color:rgba(255,255,255,.35);margin-top:2px">e.g. you@university.edu</div>
                         </div>
                         <div id="vt-id" onclick="setVM('id')"
                             style="flex:1;padding:14px 10px;border-radius:14px;cursor:pointer;text-align:center;border:1.5px solid rgba(255,255,255,.09);background:rgba(255,255,255,.04);transition:all .2s">
@@ -1477,7 +1366,7 @@
                 <p style="font-size:14px;color:rgba(255,255,255,.4);margin-bottom:26px;font-weight:300">Help others find
                     you on campus.</p>
                 <div class="field"><label class="lbl">University / College</label><input class="inp" id="ps-uni"
-                        type="text" placeholder="e.g. University of Oxford" />
+                        type="text" placeholder="e.g. Year 3, Business" />
                     <div class="errtxt" id="ps-un-e"></div>
                 </div>
                 <div class="field"><label class="lbl">Course / Major</label><input class="inp" id="ps-course"
@@ -1658,75 +1547,33 @@
 
     <!-- ══════════════════════ CHAT ══════════════════════ -->
     <div id="pg-chat" class="page">
-        <!-- Header -->
-        <div id="chat-hdr" style="padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;background:var(--nav-bg);backdrop-filter:blur(16px);flex-shrink:0;z-index:2">
-            <button onclick="leaveChat()" style="background:none;border:none;color:var(--text2);font-size:22px;cursor:pointer;line-height:1;padding:4px;flex-shrink:0">←</button>
-            <!-- Tapping avatar/name opens profile sheet -->
-            <div id="ch-av" style="flex-shrink:0;cursor:pointer" onclick="openChatProfile()"></div>
-            <div id="ch-info" style="flex:1;min-width:0;cursor:pointer" onclick="openChatProfile()"></div>
-            <button onclick="openSafety(chatOther?.id, chatOther?.full_name)" style="background:var(--bg3);border:1px solid var(--border);border-radius:10px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;flex-shrink:0">⚠️</button>
+        <div id="chat-hdr"
+            style="padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:13px;background:rgba(7,9,15,.92);backdrop-filter:blur(16px);flex-shrink:0;z-index:2">
+            <button onclick="leaveChat()"
+                style="background:none;border:none;color:rgba(255,255,255,.5);font-size:24px;cursor:pointer;line-height:1;padding:0;flex-shrink:0">←</button>
+            <div id="ch-av" style="flex-shrink:0"></div>
+            <div id="ch-info" style="flex:1;min-width:0"></div>
+            <button onclick="toggleInfo()"
+                style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:10px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px;flex-shrink:0">ℹ️</button>
         </div>
-
-        <!-- Messages -->
-        <div id="chat-msgs" style="flex:1;overflow-y:auto;padding:16px 14px;display:flex;flex-direction:column;gap:4px"></div>
-
-        <!-- Quick replies -->
-        <div id="chat-qr" style="padding:8px 14px 0;display:flex;gap:7px;overflow-x:auto;flex-shrink:0;-webkit-overflow-scrolling:touch;scrollbar-width:none"></div>
-
-        <!-- Input bar -->
-        <div style="position:relative;flex-shrink:0">
-            <!-- Sticker panel -->
-            <div id="sticker-panel">
-                <span class="sticker" onclick="sendSticker('😂')">😂</span>
-                <span class="sticker" onclick="sendSticker('🔥')">🔥</span>
-                <span class="sticker" onclick="sendSticker('❤️')">❤️</span>
-                <span class="sticker" onclick="sendSticker('👀')">👀</span>
-                <span class="sticker" onclick="sendSticker('💀')">💀</span>
-                <span class="sticker" onclick="sendSticker('🙌')">🙌</span>
-                <span class="sticker" onclick="sendSticker('😭')">😭</span>
-                <span class="sticker" onclick="sendSticker('🫡')">🫡</span>
-                <span class="sticker" onclick="sendSticker('🤣')">🤣</span>
-                <span class="sticker" onclick="sendSticker('😍')">😍</span>
-                <span class="sticker" onclick="sendSticker('🥹')">🥹</span>
-                <span class="sticker" onclick="sendSticker('💯')">💯</span>
-                <span class="sticker" onclick="sendSticker('🎉')">🎉</span>
-                <span class="sticker" onclick="sendSticker('🚀')">🚀</span>
-                <span class="sticker" onclick="sendSticker('✨')">✨</span>
-                <span class="sticker" onclick="sendSticker('👏')">👏</span>
-                <span class="sticker" onclick="sendSticker('🤝')">🤝</span>
-                <span class="sticker" onclick="sendSticker('😎')">😎</span>
-                <span class="sticker" onclick="sendSticker('🥳')">🥳</span>
-                <span class="sticker" onclick="sendSticker('😤')">😤</span>
-            </div>
-            <div style="padding:10px 12px 28px;display:flex;align-items:center;gap:9px;background:var(--nav-bg);backdrop-filter:blur(14px)">
-                <button onclick="toggleStickers()" style="background:none;border:none;font-size:22px;cursor:pointer;opacity:.6;flex-shrink:0;transition:opacity .15s" id="sticker-btn">😊</button>
-                <div style="flex:1;position:relative;min-width:0">
-                    <input id="chat-inp" style="width:100%;background:var(--inp-bg);border:1.5px solid var(--border);border-radius:26px;padding:11px 16px;color:var(--text);font-family:'Sora',sans-serif;font-size:14px;outline:none;transition:all .2s" placeholder="Message…"
-                        onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendMsg()}"
-                        oninput="updateSendBtn()" />
-                </div>
-                <button id="chat-send" onclick="sendMsg()" style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#e8457a,#f7915a);border:none;color:#fff;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;opacity:.35;transition:opacity .18s;pointer-events:none">➤</button>
-            </div>
+        <div id="chat-msgs" style="flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:9px">
         </div>
-    </div>
-
-    <!-- Reaction picker (global) -->
-    <div id="rxn-picker">
-        <span class="rxn-opt" onclick="addReaction('❤️')">❤️</span>
-        <span class="rxn-opt" onclick="addReaction('😂')">😂</span>
-        <span class="rxn-opt" onclick="addReaction('🔥')">🔥</span>
-        <span class="rxn-opt" onclick="addReaction('👀')">👀</span>
-        <span class="rxn-opt" onclick="addReaction('💯')">💯</span>
-        <span class="rxn-opt" onclick="addReaction('🙌')">🙌</span>
-        <span class="rxn-opt" onclick="addReaction('😭')">😭</span>
-        <span class="rxn-opt" onclick="addReaction('✨')">✨</span>
-    </div>
-
-    <!-- Chat profile sheet (replaces sidebar) -->
-    <div id="chat-profile-sheet" onclick="if(event.target===this)closeChatProfile()">
-        <div style="background:var(--bg2);border-radius:24px 24px 0 0;padding:24px 20px 48px;width:100%;max-width:480px;max-height:80vh;overflow-y:auto">
-            <div style="width:36px;height:4px;background:var(--border2);border-radius:2px;margin:0 auto 20px"></div>
-            <div id="chat-profile-content"></div>
+        <div id="chat-qr"
+            style="padding:8px 14px 0;display:flex;gap:8px;overflow-x:auto;flex-shrink:0;-webkit-overflow-scrolling:touch">
+        </div>
+        <div id="chat-ep"
+            style="display:none;margin:8px 14px 0;padding:11px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:13px;flex-wrap:wrap;gap:9px;flex-shrink:0">
+        </div>
+        <div
+            style="padding:10px 14px 28px;display:flex;align-items:center;gap:10px;background:rgba(7,9,15,.85);backdrop-filter:blur(14px);flex-shrink:0">
+            <button onclick="toggleEP()"
+                style="background:none;border:none;font-size:22px;cursor:pointer;opacity:.55;flex-shrink:0">😊</button>
+            <input id="chat-inp" class="inp" style="border-radius:26px;padding:11px 16px;flex:1;min-width:0"
+                placeholder="Message…"
+                onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendMsg()}"
+                oninput="updateSendBtn()" />
+            <button id="chat-send" onclick="sendMsg()"
+                style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#e8457a,#f7915a);border:none;color:#fff;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;opacity:.35;transition:opacity .18s;pointer-events:none">➤</button>
         </div>
     </div>
 
@@ -1735,47 +1582,14 @@
         <div id="prof-wrap" style="max-width:480px;margin:0 auto;position:relative;z-index:1"></div>
     </div>
 
-    <!-- ══════════════════════ COMMUNITIES ══════════════════════ -->
-    <div id="pg-communities" class="page block">
-        <div style="max-width:480px;margin:0 auto;width:100%">
-            <!-- Header -->
-            <div style="padding:20px 16px 0;display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
-                <div style="display:flex;align-items:center;gap:9px">
-                    <div style="width:32px;height:32px;background:linear-gradient(135deg,#a78bfa,#34d399);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px">🏛️</div>
-                    <span style="font-family:'Fraunces',serif;font-size:18px;font-weight:700">Communities</span>
-                </div>
-                <button onclick="openCreateComm()" style="background:linear-gradient(135deg,#a78bfa,#4fc3f7);border:none;border-radius:20px;color:#fff;font-size:12px;font-weight:700;padding:8px 16px;cursor:pointer;font-family:'Sora',sans-serif">+ Create</button>
-            </div>
-
-            <!-- Search -->
-            <div style="padding:0 16px 12px;position:relative">
-                <span style="position:absolute;left:28px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:15px">🔍</span>
-                <input id="comm-search" placeholder="Search communities…" oninput="filterComms()" style="width:100%;background:var(--inp-bg);border:1.5px solid var(--border);border-radius:14px;padding:11px 14px 11px 38px;color:var(--text);font-family:'Sora',sans-serif;font-size:14px;outline:none"/>
-            </div>
-
-            <!-- Category tabs -->
-            <div id="comm-cats" style="display:flex;gap:8px;overflow-x:auto;padding:0 16px 14px;-webkit-overflow-scrolling:touch;scrollbar-width:none"></div>
-
-            <!-- My communities -->
-            <div style="padding:0 16px 8px">
-                <div style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text3);margin-bottom:12px">My Communities</div>
-                <div id="my-comms" style="display:flex;flex-direction:column;gap:10px"></div>
-            </div>
-
-            <!-- Discover -->
-            <div style="padding:16px 16px 100px">
-                <div style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text3);margin-bottom:12px">Discover</div>
-                <div id="disc-comms" style="display:grid;grid-template-columns:1fr 1fr;gap:10px"></div>
-            </div>
-        </div>
+    <!-- INFO PANEL -->
+    <div id="info-panel" class="ipanel" onclick="event.stopPropagation()">
+        <button onclick="closeInfo()"
+            style="background:none;border:none;color:rgba(255,255,255,.4);font-size:20px;cursor:pointer;margin-bottom:20px">✕</button>
+        <div id="info-content"></div>
     </div>
-
-    <!-- Community room page -->
-    <div id="pg-comm-room" class="page block">
-        <div style="max-width:480px;margin:0 auto;width:100%">
-            <div id="comm-room-wrap"></div>
-        </div>
-    </div>
+    <div id="info-overlay" onclick="closeInfo()"
+        style="position:fixed;inset:0;z-index:94;display:none;background:rgba(0,0,0,.3)"></div>
 
     <!-- MATCH MODAL -->
     <div class="modal" id="match-modal" onclick="closeMatchModal()">
@@ -1862,15 +1676,15 @@
     <!-- NAV -->
     <nav id="nav">
         <button class="ni on" id="n-discover" onclick="navTo('discover')"><span class="ico">🔍</span><span class="lbl2">Discover</span></button>
-        <button class="ni" id="n-communities" onclick="navTo('communities')"><span class="ico">🏛️</span><span class="lbl2">Communities</span></button>
         <button class="ni" id="n-feed" onclick="navTo('feed')"><span class="ico">🌍</span><span class="lbl2">Feed</span></button>
+        <button class="ni" id="n-matches" onclick="navTo('matches')"><span class="ico">💘</span><span class="lbl2">Matches</span></button>
         <button class="ni" id="n-messages" onclick="navTo('messages')"><span class="ico">💬</span><span class="lbl2">Messages</span>
             <div class="nbadge" id="nav-badge"></div>
         </button>
         <button class="ni" id="n-profile" onclick="navTo('profile')"><span class="ico">👤</span><span class="lbl2">Profile</span></button>
     </nav>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    
     <script>
         // ══════════════════════════════════════════════
         // CONFIG
@@ -1914,7 +1728,7 @@
         const Q = id => document.getElementById(id);
         const H = (id, html) => { const el = Q(id); if (el) el.innerHTML = html; };
         function go(pid) {
-            document.querySelectorAll('.page, #pg-chat').forEach(p => {
+            document.querySelectorAll('.page,#pg-chat').forEach(p => {
                 p.classList.remove('on');
                 p.style.display = 'none';
             });
@@ -1924,7 +1738,7 @@
             el.classList.remove('pg-enter');
             void el.offsetWidth;
             el.classList.add('pg-enter');
-            const appPages = ['pg-discover', 'pg-communities', 'pg-feed', 'pg-matches', 'pg-messages', 'pg-profile', 'pg-comm-room'];
+            const appPages = ['pg-discover', 'pg-feed', 'pg-matches', 'pg-messages', 'pg-profile'];
             Q('nav').classList.toggle('on', appPages.includes(pid));
         }
         function tp(inp, btn) { const i = Q(inp); i.type = i.type === 'password' ? 'text' : 'password'; Q(btn).textContent = i.type === 'password' ? '👁' : '🙈'; }
@@ -1941,7 +1755,6 @@
         // BOOT
         // ══════════════════════════════════════════════
         async function boot() {
-            initTheme();
             buildUI();
             Q('ps-dob').max = new Date(Date.now() - 16 * 365.25 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
             try {
@@ -2087,9 +1900,8 @@
         // ══════════════════════════════════════════════
         function navTo(page) {
             document.querySelectorAll('.ni').forEach(n => n.classList.remove('on'));
-            const nb = Q(`n-${page}`); if (nb) nb.classList.add('on');
+            Q(`n-${page}`).classList.add('on');
             go(`pg-${page}`);
-            if (page === 'communities') loadCommunities();
             if (page === 'feed') loadFeed();
             if (page === 'matches') loadMatches();
             if (page === 'messages') loadConvos();
@@ -2320,377 +2132,57 @@
         // ══════════════════════════════════════════════
         // CHAT
         // ══════════════════════════════════════════════
-        let rxnTarget = null; // message id being reacted to
-
-        async function openChatById(matchId, otherId) {
-            const { data: other } = await sb.from('profiles').select('*').eq('id', otherId).single();
-            openChat(matchId, other);
-        }
-
+        async function openChatById(matchId, otherId) { const { data: other } = await sb.from('profiles').select('*').eq('id', otherId).single(); openChat(matchId, other); }
         async function openChat(matchId, other) {
-            if (typeof other === 'string') try { other = JSON.parse(other) } catch(e) {}
+            if (typeof other === 'string') try { other = JSON.parse(other) } catch (e) { }
             chatMatchId = matchId; chatOther = other; chatMsgs = [];
             go('pg-chat');
-            H('ch-av', av(other.avatar_url, 40));
-            H('ch-info', `<div style="font-size:15px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text)">${other.full_name}</div><div style="font-size:12px;color:var(--text2)">${other.course || ''}</div>`);
+            H('ch-av', av(other.avatar_url, 42));
+            H('ch-info', `<div style="font-size:15px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${other.full_name}</div><div style="font-size:12px;color:rgba(255,255,255,.38)">${other.course || ''}</div>`);
             Q('chat-inp').placeholder = `Message ${other.full_name?.split(' ')[0]}…`;
-            H('chat-qr', QUICK.map(r => `<button style="padding:7px 13px;border-radius:22px;border:1.5px solid rgba(232,69,122,.3);background:rgba(232,69,122,.07);color:var(--text);font-size:12px;font-weight:500;cursor:pointer;white-space:nowrap;font-family:'Sora',sans-serif;flex-shrink:0" onclick="sendMsg('${r.replace(/'/g, "\\'")}')">${r}</button>`).join(''));
-            H('chat-msgs', `<div style="display:flex;justify-content:center;padding-top:60px"><div class="spin"></div></div>`);
+            H('info-content', `<div style="text-align:center;margin-bottom:20px">${av(other.avatar_url, 80)}<div style="font-family:'Fraunces',serif;font-size:19px;font-weight:700;margin-top:14px;margin-bottom:3px">${other.full_name}</div><div style="font-size:13px;color:rgba(255,255,255,.4)">${other.course || ''} · ${other.university_name || ''}</div>${other.is_verified ? `<div style="margin-top:8px" class="vbadge">✓ Verified Student</div>` : ''}</div>${other.bio ? `<div style="background:rgba(255,255,255,.04);border-radius:12px;padding:13px;margin-bottom:13px"><div class="slbl" style="margin-bottom:6px">Bio</div><p style="font-size:13px;color:rgba(255,255,255,.6);line-height:1.65">${other.bio}</p></div>` : ''}<div style="display:flex;gap:8px;flex-direction:column"><button onclick="doUnmatch()" style="padding:11px;background:rgba(255,107,107,.1);border:1px solid rgba(255,107,107,.25);border-radius:11px;color:#ff6b6b;font-size:13px;font-weight:600;cursor:pointer;font-family:'Sora',sans-serif">🚫 Unmatch</button><button onclick="openSafety('${other.id}','${other.full_name}');closeInfo()" style="padding:11px;background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.2);border-radius:11px;color:#fbbf24;font-size:13px;font-weight:600;cursor:pointer;font-family:'Sora',sans-serif">⚠️ Report or Block</button></div>`);
+            H('chat-qr', QUICK.map(r => `<button style="padding:8px 14px;border-radius:22px;border:1.5px solid rgba(232,69,122,.3);background:rgba(232,69,122,.07);color:rgba(255,255,255,.8);font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap;font-family:'Sora',sans-serif;transition:all .15s;flex-shrink:0" onclick="sendMsg('${r.replace(/'/g, "\\'")}'">${r}</button>`).join(''));
+            H('chat-msgs', `<div style="display:flex;justify-content:center;padding-top:40px"><div class="spin"></div></div>`);
             const { data: hist } = await sb.from('messages').select('*').eq('match_id', matchId).order('created_at', { ascending: true });
             chatMsgs = hist || []; renderMsgs();
             await sb.from('messages').update({ is_read: true }).eq('match_id', matchId).neq('sender_id', USER.id).eq('is_read', false);
             updateBadge();
             if (chatCh) sb.removeChannel(chatCh);
-            chatCh = sb.channel(`chat-${matchId}`)
-                .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'messages', filter: `match_id=eq.${matchId}` }, pl => {
-                    if (!chatMsgs.find(m => m.id === pl.new.id)) {
-                        chatMsgs.push(pl.new); renderMsgs();
-                        if (pl.new.sender_id !== USER.id) { sb.from('messages').update({ is_read: true }).eq('id', pl.new.id); loadConvos(); }
-                    }
-                }).subscribe();
+            chatCh = sb.channel(`chat-${matchId}`).on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'messages', filter: `match_id=eq.${matchId}` }, pl => {
+                if (!chatMsgs.find(m => m.id === pl.new.id)) { chatMsgs.push(pl.new); renderMsgs(); if (pl.new.sender_id !== USER.id) { sb.from('messages').update({ is_read: true }).eq('id', pl.new.id); loadConvos(); } }
+            }).subscribe();
         }
-
-        function leaveChat() { if (chatCh) sb.removeChannel(chatCh); closeRxnPicker(); go('pg-messages'); loadConvos(); }
-
+        function leaveChat() { if (chatCh) sb.removeChannel(chatCh); go('pg-messages'); loadConvos(); }
         function renderMsgs() {
             const el = Q('chat-msgs'); if (!el) return;
-            if (!chatMsgs.length) {
-                el.innerHTML = `<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:12px">
-                    <div style="font-size:56px">👋</div>
-                    <p style="font-size:15px;font-weight:600;color:var(--text)">Say hello to ${chatOther?.full_name?.split(' ')[0]}!</p>
-                    <p style="font-size:13px;color:var(--text2);line-height:1.65;max-width:210px">You matched! Break the ice — use a quick reply above.</p>
-                </div>`; return;
-            }
-            // Group messages by sender for clean UI
-            let html = '';
-            chatMsgs.forEach((msg, i) => {
+            if (!chatMsgs.length) { el.innerHTML = `<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:12px"><div style="font-size:48px">👋</div><p style="font-size:15px;font-weight:600">Say hello to ${chatOther?.full_name?.split(' ')[0]}!</p><p style="font-size:13px;color:rgba(255,255,255,.38);line-height:1.65;max-width:210px">You matched! Break the ice.</p></div>`; return; }
+            el.innerHTML = chatMsgs.map((msg, i) => {
                 const isMe = msg.sender_id === USER.id;
-                const prev = chatMsgs[i - 1];
-                const next = chatMsgs[i + 1];
-                const sameAsPrev = prev && prev.sender_id === msg.sender_id;
-                const sameAsNext = next && next.sender_id === msg.sender_id;
-                const showAv = !isMe && !sameAsNext;
-                const showName = !isMe && !sameAsPrev;
-                // Bubble radius logic for grouping
-                const rMe = `border-radius:18px 18px ${sameAsNext?'18px':'5px'} 18px`;
-                const rThem = `border-radius:18px 18px 18px ${sameAsNext?'18px':'5px'}`;
-                const reactions = msg.reactions ? Object.entries(msg.reactions).map(([emoji, users]) =>
-                    `<span class="rxn-chip ${users.includes(USER.id)?'mine':''}" onclick="addReaction('${emoji}',null,true,'${msg.id}')">${emoji}<span>${users.length}</span></span>`
-                ).join('') : '';
-                html += `<div style="display:flex;flex-direction:column;align-items:${isMe?'flex-end':'flex-start'};margin-bottom:${sameAsNext?'2px':'10px'}">
-                    ${showName ? `<span style="font-size:11px;color:var(--text3);margin-bottom:3px;margin-left:40px">${chatOther?.full_name?.split(' ')[0]}</span>` : ''}
-                    <div style="display:flex;align-items:flex-end;gap:7px;max-width:85%">
-                        ${!isMe ? `<div style="width:30px;flex-shrink:0;opacity:${showAv?1:0};margin-bottom:2px">${av(chatOther?.avatar_url, 30)}</div>` : ''}
-                        <div>
-                            <div class="bub ${isMe?'bme':'bthem'}" style="${isMe?rMe:rThem};opacity:${msg._temp?.7:1};cursor:pointer"
-                                oncontextmenu="event.preventDefault();showRxnPicker('${msg.id}',event)"
-                                ontouchstart="startLongPress('${msg.id}',event)" ontouchend="clearLongPress()">${msg.content}</div>
-                            ${reactions ? `<div class="msg-reactions" style="justify-content:${isMe?'flex-end':'flex-start'}">${reactions}</div>` : ''}
-                            <div style="font-size:10px;color:var(--text3);margin-top:3px;text-align:${isMe?'right':'left'}">${msg._temp?'Sending…':fmtT(msg.created_at)}${isMe&&!msg._temp?`<span style="margin-left:4px">${msg.is_read?'✓✓':'✓'}</span>`:''}</div>
-                        </div>
-                    </div>
-                </div>`;
-            });
-            el.innerHTML = html;
+                const showAv = !isMe && (i === 0 || chatMsgs[i - 1].sender_id === USER.id);
+                return `<div style="display:flex;align-items:flex-end;gap:8px;justify-content:${isMe ? 'flex-end' : 'flex-start'}">
+      ${!isMe ? `<div style="width:28px;flex-shrink:0;opacity:${showAv ? 1 : 0}">${av(chatOther?.avatar_url, 28)}</div>` : ''}
+      <div>
+        <div class="bub ${isMe ? 'bme' : 'bthem'}" style="opacity:${msg._temp ? .7 : 1}">${msg.content}</div>
+        <div style="font-size:10px;color:rgba(255,255,255,.22);margin-top:3px;text-align:${isMe ? 'right' : 'left'}">${msg._temp ? 'Sending…' : fmtT(msg.created_at)}${isMe && !msg._temp ? `<span style="margin-left:4px">${msg.is_read ? '✓✓' : '✓'}</span>` : ''}</div>
+      </div>
+    </div>`;
+            }).join('');
             el.scrollTop = el.scrollHeight;
         }
-
-        // Long press for mobile reactions
-        let lpTimer = null;
-        function startLongPress(msgId, e) { lpTimer = setTimeout(() => { showRxnPicker(msgId, e.touches[0]); }, 500); }
-        function clearLongPress() { clearTimeout(lpTimer); }
-
-        function showRxnPicker(msgId, e) {
-            rxnTarget = msgId;
-            const picker = Q('rxn-picker');
-            picker.classList.add('on');
-            const x = Math.min(e.clientX || e.pageX, window.innerWidth - 230);
-            const y = Math.max((e.clientY || e.pageY) - 60, 10);
-            picker.style.left = x + 'px';
-            picker.style.top = y + 'px';
-            setTimeout(() => document.addEventListener('click', closeRxnPicker, { once: true }), 100);
-        }
-        function closeRxnPicker() { Q('rxn-picker')?.classList.remove('on'); rxnTarget = null; }
-
-        function addReaction(emoji, msgId, toggle, id) {
-            const mid = msgId || rxnTarget || id; if (!mid) return;
-            closeRxnPicker();
-            const msg = chatMsgs.find(m => m.id === mid); if (!msg) return;
-            if (!msg.reactions) msg.reactions = {};
-            if (!msg.reactions[emoji]) msg.reactions[emoji] = [];
-            const idx = msg.reactions[emoji].indexOf(USER.id);
-            if (idx > -1) msg.reactions[emoji].splice(idx, 1);
-            else msg.reactions[emoji].push(USER.id);
-            if (msg.reactions[emoji].length === 0) delete msg.reactions[emoji];
-            // Persist to DB (best-effort)
-            sb.from('messages').update({ reactions: msg.reactions }).eq('id', mid).then(() => {});
-            renderMsgs();
-        }
-
-        function toggleStickers() {
-            const p = Q('sticker-panel');
-            p.classList.toggle('on');
-            Q('sticker-btn').style.opacity = p.classList.contains('on') ? '1' : '.6';
-        }
-        function sendSticker(emoji) { Q('sticker-panel').classList.remove('on'); sendMsg(emoji); }
-
-        function updateSendBtn() { const v = Q('chat-inp')?.value.trim(); const b = Q('chat-send'); if (!b) return; b.style.opacity = v ? '1' : '.35'; b.style.pointerEvents = v ? 'auto' : 'none'; }
-
+        function updateSendBtn() { const v = Q('chat-inp').value.trim(); const b = Q('chat-send'); b.style.opacity = v ? '1' : '.35'; b.style.pointerEvents = v ? 'auto' : 'none'; }
+        function toggleEP() { const ep = Q('chat-ep'); ep.style.display = ep.style.display === 'flex' ? 'none' : 'flex'; }
         async function sendMsg(text) {
             if (!rateCheck('msg')) return;
             const content = san(text || Q('chat-inp').value); if (!content || !chatMatchId) return;
-            Q('chat-inp').value = ''; updateSendBtn(); Q('sticker-panel')?.classList.remove('on');
-            const tid = `t-${Date.now()}`;
-            chatMsgs.push({ id: tid, sender_id: USER.id, content, created_at: new Date().toISOString(), is_read: false, _temp: true });
-            renderMsgs();
+            Q('chat-inp').value = ''; updateSendBtn(); Q('chat-ep').style.display = 'none';
+            const tid = `t-${Date.now()}`; chatMsgs.push({ id: tid, sender_id: USER.id, content, created_at: new Date().toISOString(), is_read: false, _temp: true }); renderMsgs();
             const { data, error } = await sb.from('messages').insert({ match_id: chatMatchId, sender_id: USER.id, content }).select().single();
             if (!error) { const i = chatMsgs.findIndex(m => m.id === tid); if (i > -1) chatMsgs[i] = data; renderMsgs(); loadConvos(); }
             else { chatMsgs = chatMsgs.filter(m => m.id !== tid); renderMsgs(); }
         }
-
-        // Chat profile bottom sheet (replaces sidebar)
-        function openChatProfile() {
-            const other = chatOther; if (!other) return;
-            H('chat-profile-content', `
-                <div style="text-align:center;margin-bottom:20px">
-                    ${av(other.avatar_url, 80)}
-                    <div style="font-family:'Fraunces',serif;font-size:20px;font-weight:900;margin-top:14px;margin-bottom:3px;color:var(--text)">${other.full_name}</div>
-                    <div style="font-size:13px;color:var(--text2)">${other.course || ''} · ${other.university_name || ''}</div>
-                    ${other.is_verified ? `<div style="margin-top:8px" class="vbadge">✓ Verified Student</div>` : ''}
-                </div>
-                ${other.bio ? `<div style="background:var(--bg3);border-radius:12px;padding:13px;margin-bottom:16px;border:1px solid var(--border)"><div class="slbl" style="margin-bottom:6px">Bio</div><p style="font-size:13px;color:var(--text2);line-height:1.65">${other.bio}</p></div>` : ''}
-                <div style="display:flex;flex-direction:column;gap:8px">
-                    <button onclick="doUnmatch()" style="padding:13px;background:rgba(255,107,107,.1);border:1px solid rgba(255,107,107,.25);border-radius:13px;color:#ff6b6b;font-size:14px;font-weight:600;cursor:pointer;font-family:'Sora',sans-serif">🚫 Unmatch</button>
-                    <button onclick="closeChatProfile();openSafety('${other.id}','${other.full_name}')" style="padding:13px;background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.2);border-radius:13px;color:#fbbf24;font-size:14px;font-weight:600;cursor:pointer;font-family:'Sora',sans-serif">⚠️ Report or Block</button>
-                </div>`);
-            Q('chat-profile-sheet').classList.add('on');
-        }
-        function closeChatProfile() { Q('chat-profile-sheet').classList.remove('on'); }
-        async function doUnmatch() { if (!confirm('Unmatch?')) return; await sb.from('matches').delete().eq('id', chatMatchId); closeChatProfile(); leaveChat(); }
-
-        // Legacy stubs (no longer used but referenced)
-        function toggleInfo() { openChatProfile(); }
-        function closeInfo() { closeChatProfile(); }
-
-        // ══════════════════════════════════════════════
-        // COMMUNITIES
-        // ══════════════════════════════════════════════
-        const COMM_CATS = [
-            { id: 'all', label: '✦ All', color: '#a78bfa' },
-            { id: 'university', label: '🎓 University', color: '#4fc3f7' },
-            { id: 'study', label: '📚 Study', color: '#34d399' },
-            { id: 'social', label: '🎉 Social', color: '#e8457a' },
-            { id: 'career', label: '💼 Career', color: '#fbbf24' },
-            { id: 'hobbies', label: '🎮 Hobbies', color: '#f472b6' },
-            { id: 'sports', label: '⚽ Sports', color: '#f7915a' },
-        ];
-        const COMM_COLORS = ['#e8457a','#4fc3f7','#a78bfa','#34d399','#fbbf24','#f7915a','#f472b6'];
-        let commFilter = 'all', allComms = [], joinedIds = new Set();
-
-        function buildCommCats() {
-            const el = Q('comm-cats'); if (!el || el.children.length) return;
-            COMM_CATS.forEach((c, i) => {
-                const b = document.createElement('button');
-                b.id = `cc-${c.id}`;
-                b.style.cssText = `padding:7px 14px;border-radius:20px;border:1px solid ${i===0?c.color+'66':'var(--border)'};background:${i===0?c.color+'22':'var(--bg3)'};color:${i===0?c.color:'var(--text2)'};font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;font-family:'Sora',sans-serif;flex-shrink:0;transition:all .2s`;
-                b.textContent = c.label;
-                b.onclick = () => {
-                    commFilter = c.id;
-                    document.querySelectorAll('[id^="cc-"]').forEach(x => { x.style.background='var(--bg3)'; x.style.color='var(--text2)'; x.style.borderColor='var(--border)'; });
-                    b.style.background = c.color+'22'; b.style.color = c.color; b.style.borderColor = c.color+'66';
-                    renderComms();
-                };
-                el.appendChild(b);
-            });
-        }
-
-        async function loadCommunities() {
-            buildCommCats();
-            Q('my-comms').innerHTML = `<div style="display:flex;justify-content:center;padding:20px"><div class="spin"></div></div>`;
-            Q('disc-comms').innerHTML = '';
-            // Load communities from DB or use default ones
-            const { data } = await sb.from('communities').select('*').order('member_count', { ascending: false }).limit(50).catch(() => ({ data: null }));
-            if (data) {
-                allComms = data;
-            } else {
-                // Fallback seed communities if table doesn't exist yet
-                allComms = [
-                    { id: 'c1', name: 'Computer Science Hub', category: 'study', description: 'All things CS — algorithms, projects, internships', member_count: 234, emoji: '💻', color: '#4fc3f7' },
-                    { id: 'c2', name: 'Campus Social', category: 'social', description: 'Events, parties, meetups and everything fun', member_count: 891, emoji: '🎉', color: '#e8457a' },
-                    { id: 'c3', name: 'Business & Finance', category: 'career', description: 'Entrepreneurship, markets, career moves', member_count: 312, emoji: '📈', color: '#fbbf24' },
-                    { id: 'c4', name: 'Football Fans', category: 'sports', description: 'Match discussions, fantasy leagues, campus games', member_count: 567, emoji: '⚽', color: '#34d399' },
-                    { id: 'c5', name: 'Gaming Society', category: 'hobbies', description: 'Console, PC, mobile — all gamers welcome', member_count: 189, emoji: '🎮', color: '#a78bfa' },
-                    { id: 'c6', name: 'Engineering Network', category: 'study', description: 'Mechanical, Civil, Electrical — campus engineers', member_count: 278, emoji: '⚙️', color: '#f7915a' },
-                    { id: 'c7', name: 'Mental Wellness', category: 'social', description: 'Safe space to talk, support each other', member_count: 145, emoji: '🧘', color: '#f472b6' },
-                    { id: 'c8', name: 'Startups & Tech', category: 'career', description: 'Build, launch, pitch — student founders', member_count: 423, emoji: '🚀', color: '#4fc3f7' },
-                ];
-            }
-            // Load joined communities
-            if (USER) {
-                const { data: joined } = await sb.from('community_members').select('community_id').eq('user_id', USER.id).catch(() => ({ data: [] }));
-                joinedIds = new Set((joined || []).map(j => j.community_id));
-            }
-            // Auto-add university community
-            if (PROFILE?.university_name) {
-                const uniComm = allComms.find(c => c.name === PROFILE.university_name + ' Community');
-                if (!uniComm) {
-                    allComms.unshift({ id: 'uni-' + USER.id, name: PROFILE.university_name, category: 'university', description: `Official community for ${PROFILE.university_name} students`, member_count: '–', emoji: '🎓', color: '#4fc3f7', is_university: true });
-                }
-            }
-            renderComms();
-        }
-
-        function filterComms() { renderComms(); }
-
-        function renderComms() {
-            const search = (Q('comm-search')?.value || '').toLowerCase();
-            let filtered = allComms.filter(c => {
-                const matchCat = commFilter === 'all' || c.category === commFilter;
-                const matchSearch = !search || c.name.toLowerCase().includes(search) || (c.description||'').toLowerCase().includes(search);
-                return matchCat && matchSearch;
-            });
-            const joined = filtered.filter(c => joinedIds.has(c.id) || c.is_university);
-            const discover = filtered.filter(c => !joinedIds.has(c.id) && !c.is_university);
-
-            H('my-comms', joined.length ? joined.map(c => commRowHTML(c)).join('') :
-                `<div style="text-align:center;padding:20px;color:var(--text3);font-size:13px">Join communities to see them here</div>`);
-            H('disc-comms', discover.map(c => commCardHTML(c)).join(''));
-        }
-
-        function commRowHTML(c) {
-            const col = c.color || COMM_COLORS[0];
-            return `<div style="display:flex;align-items:center;gap:12px;padding:12px;background:var(--card-bg);border:1px solid var(--border);border-radius:16px;cursor:pointer;transition:all .18s" onclick="openCommRoom('${c.id}')">
-                <div style="width:48px;height:48px;border-radius:14px;background:${col}22;border:1px solid ${col}44;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">${c.emoji||'🏛️'}</div>
-                <div style="flex:1;min-width:0">
-                    <div style="font-size:14px;font-weight:600;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${c.name}</div>
-                    <div style="font-size:12px;color:var(--text2);margin-top:2px">${c.member_count} members · ${c.category}</div>
-                </div>
-                <div style="font-size:18px;color:var(--text3)">›</div>
-            </div>`;
-        }
-
-        function commCardHTML(c) {
-            const col = c.color || COMM_COLORS[Math.floor(Math.random() * COMM_COLORS.length)];
-            return `<div class="comm-card" onclick="openCommRoom('${c.id}')">
-                <div class="comm-banner" style="background:${col}22;border-bottom:1px solid ${col}33">
-                    <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:36px">${c.emoji||'🏛️'}</div>
-                </div>
-                <div class="comm-body">
-                    <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:3px;line-height:1.3">${c.name}</div>
-                    <div style="font-size:11px;color:var(--text3);margin-bottom:8px">${c.member_count} members</div>
-                    <button onclick="event.stopPropagation();joinComm('${c.id}',this)" style="width:100%;padding:7px;background:${col}22;border:1px solid ${col}44;border-radius:10px;color:${col};font-size:12px;font-weight:700;cursor:pointer;font-family:'Sora',sans-serif;transition:all .2s">${joinedIds.has(c.id)?'✓ Joined':'+ Join'}</button>
-                </div>
-            </div>`;
-        }
-
-        async function joinComm(commId, btn) {
-            if (joinedIds.has(commId)) return;
-            joinedIds.add(commId);
-            if (btn) { btn.textContent = '✓ Joined'; btn.style.opacity = '.6'; }
-            await sb.from('community_members').insert({ community_id: commId, user_id: USER.id }).catch(() => {});
-            await sb.from('communities').update({ member_count: (allComms.find(c=>c.id===commId)?.member_count||0)+1 }).eq('id', commId).catch(() => {});
-            renderComms();
-        }
-
-        function openCommRoom(commId) {
-            const comm = allComms.find(c => c.id === commId);
-            if (!comm) return;
-            const col = comm.color || '#a78bfa';
-            go('pg-comm-room');
-            H('comm-room-wrap', `
-                <!-- Header -->
-                <div style="position:sticky;top:0;z-index:10;background:var(--nav-bg);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)">
-                    <div style="padding:14px 16px;display:flex;align-items:center;gap:12px">
-                        <button onclick="navTo('communities')" style="background:none;border:none;color:var(--text2);font-size:22px;cursor:pointer;padding:4px">←</button>
-                        <div style="width:36px;height:36px;border-radius:10px;background:${col}22;border:1px solid ${col}44;display:flex;align-items:center;justify-content:center;font-size:18px">${comm.emoji||'🏛️'}</div>
-                        <div style="flex:1;min-width:0">
-                            <div style="font-size:15px;font-weight:700;color:var(--text)">${comm.name}</div>
-                            <div style="font-size:12px;color:var(--text2)">${comm.member_count} members</div>
-                        </div>
-                        ${!joinedIds.has(commId) ? `<button onclick="joinComm('${commId}',this);this.textContent='✓ Joined'" style="padding:8px 16px;background:${col}22;border:1px solid ${col}44;border-radius:20px;color:${col};font-size:12px;font-weight:700;cursor:pointer;font-family:'Sora',sans-serif">+ Join</button>` : `<span style="padding:8px 16px;background:${col}18;border:1px solid ${col}33;border-radius:20px;color:${col};font-size:12px;font-weight:700">✓ Joined</span>`}
-                    </div>
-                    <!-- Channel tabs -->
-                    <div style="display:flex;overflow-x:auto;padding:0 16px 12px;gap:8px;scrollbar-width:none">
-                        <button style="padding:6px 14px;border-radius:14px;background:${col}22;border:1px solid ${col}44;color:${col};font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;font-family:'Sora',sans-serif"># general</button>
-                        <button style="padding:6px 14px;border-radius:14px;background:var(--bg3);border:1px solid var(--border);color:var(--text2);font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;font-family:'Sora',sans-serif"># announcements</button>
-                        <button style="padding:6px 14px;border-radius:14px;background:var(--bg3);border:1px solid var(--border);color:var(--text2);font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;font-family:'Sora',sans-serif"># resources</button>
-                        <button style="padding:6px 14px;border-radius:14px;background:var(--bg3);border:1px solid var(--border);color:var(--text2);font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;font-family:'Sora',sans-serif"># events</button>
-                    </div>
-                </div>
-                <!-- About -->
-                <div style="padding:16px;margin:12px 16px;background:var(--card-bg);border:1px solid var(--border);border-radius:16px">
-                    <div style="font-size:12px;font-weight:600;color:${col};margin-bottom:4px">About</div>
-                    <p style="font-size:13px;color:var(--text2);line-height:1.6">${comm.description||'A campus community.'}</p>
-                </div>
-                <!-- Posts feed for this community -->
-                <div id="comm-posts-${commId}" style="padding:0 16px 100px">
-                    <div style="display:flex;justify-content:center;padding:30px"><div class="spin"></div></div>
-                </div>
-                <!-- Post input -->
-                <div style="position:fixed;bottom:0;left:0;right:0;padding:12px 16px 32px;background:var(--nav-bg);backdrop-filter:blur(16px);border-top:1px solid var(--border);display:flex;gap:10px;z-index:10;max-width:480px;margin:0 auto">
-                    <input id="comm-post-inp-${commId}" placeholder="Post to community…" style="flex:1;background:var(--inp-bg);border:1.5px solid var(--border);border-radius:22px;padding:10px 16px;color:var(--text);font-family:'Sora',sans-serif;font-size:14px;outline:none"/>
-                    <button onclick="submitCommPost('${commId}')" style="background:linear-gradient(135deg,${col},${col}cc);border:none;border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-size:16px;color:#fff;cursor:pointer;flex-shrink:0">➤</button>
-                </div>`);
-            loadCommPosts(commId);
-        }
-
-        async function loadCommPosts(commId) {
-            const el = Q(`comm-posts-${commId}`); if (!el) return;
-            const { data } = await sb.from('notice_posts').select('id,content,is_anonymous,created_at,author_id,profiles(full_name,avatar_url)').eq('category', commId).order('created_at', { ascending: false }).limit(20).catch(() => ({ data: [] }));
-            if (!data?.length) { el.innerHTML = `<div style="text-align:center;padding:40px 20px;color:var(--text3)"><div style="font-size:36px;margin-bottom:12px">💬</div><div style="font-size:14px;font-weight:600">No posts yet</div><p style="font-size:13px;margin-top:6px">Be the first to post!</p></div>`; return; }
-            el.innerHTML = data.map(post => {
-                const name = post.is_anonymous ? 'Anonymous' : (post.profiles?.full_name || 'Student');
-                const avHtml = post.profiles?.avatar_url && !post.is_anonymous ? `<img src="${post.profiles.avatar_url}" style="width:34px;height:34px;border-radius:50%;object-fit:cover;flex-shrink:0">` : `<div style="width:34px;height:34px;border-radius:50%;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0">👤</div>`;
-                return `<div style="background:var(--card-bg);border:1px solid var(--border);border-radius:16px;padding:14px;margin-bottom:10px">
-                    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-                        ${avHtml}
-                        <div><div style="font-size:13px;font-weight:600;color:var(--text)">${name}</div><div style="font-size:11px;color:var(--text3)">${tAgo(post.created_at)}</div></div>
-                        ${post.author_id === USER?.id ? `<button onclick="deleteCommPost('${post.id}','${commId}')" style="margin-left:auto;background:none;border:none;color:var(--text3);cursor:pointer">🗑</button>` : ''}
-                    </div>
-                    <p style="font-size:14px;color:var(--text);line-height:1.6">${post.content}</p>
-                </div>`;
-            }).join('');
-        }
-
-        async function submitCommPost(commId) {
-            const inp = Q(`comm-post-inp-${commId}`);
-            const content = inp?.value.trim(); if (!content) return;
-            inp.value = '';
-            await sb.from('notice_posts').insert({ content, category: commId, is_anonymous: false, author_id: USER.id, university_name: PROFILE?.university_name }).catch(() => {});
-            loadCommPosts(commId);
-        }
-
-        async function deleteCommPost(postId, commId) {
-            if (!confirm('Delete?')) return;
-            await sb.from('notice_posts').delete().eq('id', postId);
-            loadCommPosts(commId);
-        }
-
-        function openCreateComm() {
-            // Simple prompt for now
-            const name = prompt('Community name:'); if (!name) return;
-            const desc = prompt('Description:') || '';
-            const cats = ['study','social','career','hobbies','sports','university'];
-            const cat = prompt(`Category (${cats.join('/')}):`) || 'social';
-            const emoji = prompt('Emoji icon:') || '🏛️';
-            sb.from('communities').insert({ name, description: desc, category: cat, emoji, color: COMM_COLORS[Math.floor(Math.random()*COMM_COLORS.length)], member_count: 1, created_by: USER.id }).then(() => loadCommunities());
-        }
-
-        // ══════════════════════════════════════════════
-        // THEME TOGGLE
-        // ══════════════════════════════════════════════
-        let isDark = true;
-        function toggleTheme() {
-            isDark = !isDark;
-            document.body.classList.toggle('light', !isDark);
-            localStorage.setItem('cl-theme', isDark ? 'dark' : 'light');
-            const btn = Q('theme-btn');
-            if (btn) btn.textContent = isDark ? '☀️' : '🌙';
-        }
-        function initTheme() {
-            const saved = localStorage.getItem('cl-theme');
-            if (saved === 'light') { isDark = false; document.body.classList.add('light'); }
-        }
+        async function doUnmatch() { if (!confirm('Unmatch?')) return; await sb.from('matches').delete().eq('id', chatMatchId); closeInfo(); leaveChat(); }
+        function toggleInfo() { const p = Q('info-panel'); p.classList.toggle('on'); Q('info-overlay').style.display = p.classList.contains('on') ? 'block' : 'none'; }
+        function closeInfo() { Q('info-panel').classList.remove('on'); Q('info-overlay').style.display = 'none'; }
 
         // ══════════════════════════════════════════════
         // PROFILE
@@ -2726,23 +2218,16 @@
       ${(p.purposes || []).length ? `<div style="margin-bottom:20px"><div class="slbl" style="margin-bottom:11px">Here for</div><div style="display:flex;flex-wrap:wrap;gap:7px">${(p.purposes || []).map(id => { const pp = PM[id]; return pp ? `<span style="padding:6px 13px;border-radius:22px;font-size:13px;font-weight:600;color:${pp.color};border:1px solid ${pp.bdr};background:${pp.bg}">${pp.emoji} ${pp.title}</span>` : '' }).join('')}</div></div>` : ''}
       ${(p.interests || []).length ? `<div style="margin-bottom:28px"><div class="slbl" style="margin-bottom:11px">Interests</div><div style="display:flex;flex-wrap:wrap;gap:7px">${(p.interests || []).map(i => `<span style="padding:6px 13px;border-radius:18px;font-size:13px;background:rgba(255,255,255,.07);color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.09)">${i}</span>`).join('')}</div></div>` : ''}
       <!-- Safety section -->
-      <div style="border-top:1px solid var(--border);padding-top:20px;margin-bottom:16px">
-        <div class="slbl" style="margin-bottom:12px">Appearance & Safety</div>
+      <div style="border-top:1px solid rgba(255,255,255,.07);padding-top:20px;margin-bottom:16px">
+        <div class="slbl" style="margin-bottom:12px">Safety & Community</div>
         <div style="display:flex;flex-direction:column;gap:8px">
-          <div style="display:flex;align-items:center;justify-content:space-between;background:var(--card-bg);border:1px solid var(--border);border-radius:14px;padding:12px 14px">
-            <div style="display:flex;align-items:center;gap:12px">
-              <span id="theme-btn" style="font-size:20px">${isDark?'☀️':'🌙'}</span>
-              <div><div style="font-size:13px;font-weight:600;color:var(--text)">${isDark?'Light Mode':'Dark Mode'}</div><div style="font-size:11px;color:var(--text3)">Switch appearance</div></div>
-            </div>
-            <div class="theme-toggle" onclick="toggleTheme();renderProfile()"></div>
-          </div>
-          <button onclick="Q('guidelines-sheet').classList.add('on')" style="display:flex;align-items:center;gap:12px;background:rgba(79,195,247,.06);border:1px solid rgba(79,195,247,.15);border-radius:14px;padding:12px 14px;cursor:pointer;font-family:'Sora',sans-serif;color:var(--text);text-align:left">
+          <button onclick="Q('guidelines-sheet').classList.add('on')" style="display:flex;align-items:center;gap:12px;background:rgba(79,195,247,.06);border:1px solid rgba(79,195,247,.15);border-radius:14px;padding:12px 14px;cursor:pointer;font-family:'Sora',sans-serif;color:#fff;text-align:left">
             <span style="font-size:20px">🤝</span>
-            <div><div style="font-size:13px;font-weight:600">Community Guidelines</div><div style="font-size:11px;color:var(--text3)">Read our rules for a safe campus space</div></div>
+            <div><div style="font-size:13px;font-weight:600">Community Guidelines</div><div style="font-size:11px;color:rgba(255,255,255,.35)">Read our rules for a safe campus space</div></div>
           </button>
           <button onclick="doSignOut()" style="display:flex;align-items:center;gap:12px;background:rgba(255,107,107,.06);border:1px solid rgba(255,107,107,.15);border-radius:14px;padding:12px 14px;cursor:pointer;font-family:'Sora',sans-serif;color:#ff6b6b;text-align:left">
             <span style="font-size:20px">🚪</span>
-            <div><div style="font-size:13px;font-weight:600">Sign Out</div><div style="font-size:11px;color:var(--text3)">See you next time</div></div>
+            <div><div style="font-size:13px;font-weight:600">Sign Out</div><div style="font-size:11px;color:rgba(255,255,255,.35)">See you next time</div></div>
           </button>
         </div>
       </div>
@@ -2795,7 +2280,6 @@
             const t = document.createElement('div'); t.className = `toast toast-${type}`; t.textContent = msg; document.body.appendChild(t); setTimeout(() => t.classList.add('show'), 10); setTimeout(() => { t.classList.remove('show'); setTimeout(() => t.remove(), 300); }, 3000);
         }
         function pwStrength(pw) { let s = 0; if (pw.length >= 8) s++; if (/[0-9]/.test(pw)) s++; if (/[^a-zA-Z0-9]/.test(pw)) s++; return s; }
-        function updatePwStrength(pw) { const s = pwStrength(pw); const el = Q('pw-strength'); const hint = Q('pw-hint'); if (!el) return; const cols = ['#ff6b6b','#fbbf24','#34d399']; const labels = ['Weak','Fair','Strong']; el.style.width = (s/3*100)+'%'; el.style.background = cols[s-1]||'transparent'; if (hint) hint.textContent = s > 0 ? labels[s-1] : ''; }
         const rL = {}; function rateCheck(type, src = 'app', lim = 10, win = 60000) { const k = `${type}-${src}`; const now = Date.now(); if (!rL[k]) rL[k] = []; rL[k] = rL[k].filter(t => now - t < win); if (rL[k].length >= lim) { toast('Too many requests, try again later', 'warn'); return false; } rL[k].push(now); return true; }
         function san(str) { const tmp = document.createElement('div'); tmp.textContent = str; return tmp.innerHTML; }
 
@@ -2992,16 +2476,6 @@
             discProfs = discProfs.filter(p => p.id !== safetyTargetId);
             discIdx = Math.max(0, discIdx);
             renderStack();
-        }
-
-        // Hide all pages on load, show only splash
-        function initPages() {
-            document.querySelectorAll('.page, #pg-chat').forEach(p => {
-                if (p.id !== 'pg-splash') {
-                    p.classList.remove('on');
-                    p.style.display = 'none';
-                }
-            });
         }
 
         boot();
